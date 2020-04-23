@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA4CDC6F24519ADD00EF83A6 /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */; };
+		DA4CDC722451A26500EF83A6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC712451A26500EF83A6 /* LoginController.swift */; };
+		DA4CDC742451A29700EF83A6 /* RegisterationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC732451A29700EF83A6 /* RegisterationController.swift */; };
+		DA4CDC762451A4BC00EF83A6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC752451A4BC00EF83A6 /* Extension.swift */; };
 		DAA2604624519A0F00F621A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604524519A0F00F621A0 /* AppDelegate.swift */; };
 		DAA2604824519A0F00F621A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604724519A0F00F621A0 /* SceneDelegate.swift */; };
 		DAA2604A24519A0F00F621A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604924519A0F00F621A0 /* ViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
+		DA4CDC712451A26500EF83A6 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		DA4CDC732451A29700EF83A6 /* RegisterationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationController.swift; sourceTree = "<group>"; };
+		DA4CDC752451A4BC00EF83A6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		DAA2604224519A0F00F621A0 /* dustinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dustinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA2604524519A0F00F621A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAA2604724519A0F00F621A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +47,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA4CDC6624519A2000EF83A6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		DA4CDC6824519A2D00EF83A6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DA4CDC702451A25400EF83A6 /* Authentication */,
+				DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DA4CDC6924519A2F00EF83A6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA4CDC6A24519A3300EF83A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DA4CDC6C24519A3D00EF83A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DA4CDC6D24519AC700EF83A6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DA4CDC752451A4BC00EF83A6 /* Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DA4CDC702451A25400EF83A6 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DA4CDC712451A26500EF83A6 /* LoginController.swift */,
+				DA4CDC732451A29700EF83A6 /* RegisterationController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		DAA2603924519A0F00F621A0 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +120,12 @@
 		DAA2604424519A0F00F621A0 /* dustinChat */ = {
 			isa = PBXGroup;
 			children = (
+				DA4CDC6D24519AC700EF83A6 /* Utils */,
+				DA4CDC6C24519A3D00EF83A6 /* Model */,
+				DA4CDC6A24519A3300EF83A6 /* View */,
+				DA4CDC6924519A2F00EF83A6 /* ViewModel */,
+				DA4CDC6824519A2D00EF83A6 /* Controller */,
+				DA4CDC6624519A2000EF83A6 /* API */,
 				DAA2604524519A0F00F621A0 /* AppDelegate.swift */,
 				DAA2604724519A0F00F621A0 /* SceneDelegate.swift */,
 				DAA2604924519A0F00F621A0 /* ViewController.swift */,
@@ -142,9 +210,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAA2604A24519A0F00F621A0 /* ViewController.swift in Sources */,
+				DA4CDC722451A26500EF83A6 /* LoginController.swift in Sources */,
+				DA4CDC6F24519ADD00EF83A6 /* ConversationController.swift in Sources */,
 				DAA2604624519A0F00F621A0 /* AppDelegate.swift in Sources */,
+				DA4CDC742451A29700EF83A6 /* RegisterationController.swift in Sources */,
 				DAA2605024519A0F00F621A0 /* dustinChat.xcdatamodeld in Sources */,
 				DAA2604824519A0F00F621A0 /* SceneDelegate.swift in Sources */,
+				DA4CDC762451A4BC00EF83A6 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
