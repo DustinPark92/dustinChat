@@ -20,6 +20,32 @@ class LoginController: UIViewController {
         return iv
     }()
     
+    private let emailContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .cyan
+        view.setHeight(height: 50)
+        return view
+    }()
+    
+    private let passwordContainerView: UIView = {
+         let view = UIView()
+         view.backgroundColor = .cyan
+        view.setHeight(height: 50)
+         return view
+     }()
+    
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Log In", for: .normal)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.backgroundColor = .systemRed
+        button.setHeight(height: 50)
+        return button
+    }()
+    
+    
+    
     //MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +62,26 @@ class LoginController: UIViewController {
         view.backgroundColor = .systemPurple
         
         configureGradientLayer()
+        
+        view.addSubview(iconImage)
+        iconImage.centerX(inView: view)
+        iconImage.anchor(top:view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
+        iconImage.setDimensions(height: 120, width: 120)
+        
+        let stack = UIStackView(arrangedSubviews: [emailContainerView,
+                                                   passwordContainerView,
+                                                   loginButton])
+        
+        view.addSubview(stack)
+        
+        stack.axis = .vertical
+        stack.spacing = 50
+        
+        
+        stack.anchor(top: iconImage.bottomAnchor , left: view.leftAnchor, right: view.rightAnchor,
+                     paddingTop: 32, paddingLeft: 32 , paddingRight:  32)
+        
+        
     }
     
     //MARK: - Selector
