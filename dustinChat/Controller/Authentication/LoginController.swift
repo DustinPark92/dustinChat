@@ -20,78 +20,52 @@ class LoginController: UIViewController {
         return iv
     }()
     
-    private lazy var emailContainerView: UIView = {
-        let containerView = UIView()
-        containerView.backgroundColor = .clear
-        containerView.setHeight(height: 50)
-        
-        let iv = UIImageView()
-        iv.image = UIImage(named: "ic_mail_outline_white_2x")
-        iv.tintColor = .white
-        
-        containerView.addSubview(iv)
-        iv.centerY(inView: containerView)
-        iv.anchor(left: containerView.leftAnchor, paddingLeft: 8)
-        iv.setDimensions(height: 24, width: 28)
-        
-        containerView.addSubview(emailTextField)
-        emailTextField.centerY(inView: containerView)
-        emailTextField.anchor(left: iv.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingLeft: 8, paddingBottom:-8)
-        
-        
-        return containerView
+    private lazy var emailContainerView: InputContainerView = {
+        return InputContainerView(image: UIImage(named: "ic_mail_outline_white_2x")!, textField: emailTextField)
+
     }()
     
     private lazy var  passwordContainerView: UIView = {
-         let containerView = UIView()
-         containerView.backgroundColor = .clear
-        containerView.setHeight(height: 50)
+        return InputContainerView(image: UIImage(named: "ic_lock_outline_white_2x")!, textField: passwordTextField)
         
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "lock")
-        iv.tintColor = .white
-        
-        containerView.addSubview(iv)
-        iv.centerY(inView: containerView)
-        iv.anchor(left: containerView.leftAnchor, paddingLeft: 8)
-        iv.setDimensions(height: 28, width: 28)
-        
-       
-
-        
-        containerView.addSubview(passwordTextField)
-        passwordTextField.centerY(inView: containerView)
-        passwordTextField.anchor(left: iv.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingLeft: 8, paddingBottom:-8)
-
-        
-        
-         return containerView
      }()
     
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log In", for: .normal)
         button.layer.cornerRadius = 5
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = .systemRed
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        button.setTitleColor(.white, for: .normal)
         button.setHeight(height: 50)
+     
         return button
     }()
     
-    private let emailTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Email"
-        tf.textColor = .white
-        
+    private let emailTextField: CustomTextField = {
+
+        return CustomTextField(placeholder: "Email")
+    }()
+    
+    private let passwordTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "Password")
+        tf.isSecureTextEntry = true
         return tf
     }()
     
-    private let passwordTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Password"
-        tf.isSecureTextEntry = true
-        tf.textColor = .white
-        return tf
+    private let dontHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an account", attributes:
+            [.font : UIFont.systemFont(ofSize: 16),
+            .foregroundColor: UIColor.white] )
+        
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [.font: UIFont.boldSystemFont(ofSize: 16),
+                        .foregroundColor:UIColor.white]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        
+        return button
     }()
     
     
@@ -125,24 +99,28 @@ class LoginController: UIViewController {
         view.addSubview(stack)
         
         stack.axis = .vertical
-        stack.spacing = 50
+        stack.spacing = 16
         
         
         stack.anchor(top: iconImage.bottomAnchor , left: view.leftAnchor, right: view.rightAnchor,
                      paddingTop: 32, paddingLeft: 32 , paddingRight:  32)
+        
+        view.addSubview(dontHaveAccountButton)
+        dontHaveAccountButton.anchor(left: view.leftAnchor , bottom:view.safeAreaLayoutGuide.bottomAnchor,
+                                     right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
         
     }
     
     //MARK: - Selector
     
-    //gradation 넣기
-    func configureGradientLayer() {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.systemBlue.cgColor, UIColor.systemTeal.cgColor]
-        gradient.locations = [0, 0.8]
-        view.layer.addSublayer(gradient)
-        gradient.frame = view.frame
-        
+    @objc func handleShowSignUp() {
+        let controller = RegisterationController()
+        navigationController?.pushViewController(controller, animated: true)
     }
+    
+    //gradation 넣기
+    
+    
+   
 }

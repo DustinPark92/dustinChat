@@ -39,7 +39,7 @@ extension UIView {
             widthAnchor.constraint(equalToConstant: width).isActive = true
         }
         if let height = height {
-            widthAnchor.constraint(equalToConstant: height).isActive = true
+            heightAnchor.constraint(equalToConstant: height).isActive = true
         }
         
     
@@ -82,4 +82,16 @@ extension UIView {
 
     
     
+}
+
+extension UIViewController {
+    
+    func configureGradientLayer() {
+           let gradient = CAGradientLayer()
+           gradient.colors = [UIColor.systemBlue.cgColor, UIColor.systemTeal.cgColor]
+           gradient.locations = [0, 0.8]
+           view.layer.addSublayer(gradient)
+           gradient.frame = view.frame
+           
+       }
 }

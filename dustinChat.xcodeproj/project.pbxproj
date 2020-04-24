@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA24E97C245285E100E802A4 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24E97B245285E100E802A4 /* InputContainerView.swift */; };
+		DA24E97E24528A0A00E802A4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24E97D24528A0A00E802A4 /* CustomTextField.swift */; };
 		DA4CDC6F24519ADD00EF83A6 /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */; };
 		DA4CDC722451A26500EF83A6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC712451A26500EF83A6 /* LoginController.swift */; };
 		DA4CDC742451A29700EF83A6 /* RegisterationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC732451A29700EF83A6 /* RegisterationController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA24E97B245285E100E802A4 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		DA24E97D24528A0A00E802A4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
 		DA4CDC712451A26500EF83A6 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DA4CDC732451A29700EF83A6 /* RegisterationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		DA4CDC6A24519A3300EF83A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DA24E97B245285E100E802A4 /* InputContainerView.swift */,
+				DA24E97D24528A0A00E802A4 /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +219,8 @@
 				DA4CDC722451A26500EF83A6 /* LoginController.swift in Sources */,
 				DA4CDC6F24519ADD00EF83A6 /* ConversationController.swift in Sources */,
 				DAA2604624519A0F00F621A0 /* AppDelegate.swift in Sources */,
+				DA24E97E24528A0A00E802A4 /* CustomTextField.swift in Sources */,
+				DA24E97C245285E100E802A4 /* InputContainerView.swift in Sources */,
 				DA4CDC742451A29700EF83A6 /* RegisterationController.swift in Sources */,
 				DAA2605024519A0F00F621A0 /* dustinChat.xcdatamodeld in Sources */,
 				DAA2604824519A0F00F621A0 /* SceneDelegate.swift in Sources */,
