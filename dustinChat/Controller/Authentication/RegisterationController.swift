@@ -8,16 +8,21 @@
 
 import UIKit
 
+
+
 class RegisterationController: UIViewController {
     
     
     //MARK: - Properties
+    
+    private var viewModel = RegisterationViewModel()
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.clipsToBounds = true
         return button
         
     }()
@@ -63,6 +68,8 @@ class RegisterationController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.setHeight(height: 50)
+        button.isEnabled = false
+        button.addTarget(self, action:#selector(handleSignUp), for: .touchUpInside)
      
         return button
     }()
@@ -86,13 +93,41 @@ class RegisterationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        configureUI()
+        configureNotificationObservers()
     }
     
     //MARK: - Selector
     @objc func handleSelectPhoto() {
         
-        print("Select Photo here...")
+          let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
         
+    }
+    
+    @objc func handleSignUp() {
+        print(123)
+    }
+    
+    @objc func textDidChange(sender: UITextField) {
+        
+        
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else if sender == passwordTextField {
+            viewModel.password = sender.text
+        } else if sender == userNameTextField {
+            viewModel.username = sender.text
+        } else if sender == fullNameTextField {
+        viewModel.fullname = sender.text
+     
+    }
+         checkFormStatus()
+    }
+    
+    //MARK: - Selctor
+    @objc func handleShowLogin() {
+        navigationController?.popViewController(animated: true)
     }
     
     
@@ -134,8 +169,46 @@ class RegisterationController: UIViewController {
         
     }
     
-    
-    @objc func handleShowLogin() {
-        navigationController?.popViewController(animated: true)
+    func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+         userNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
+    
+
+    
+
+}
+//MARK : - UIImagePickerControllerDelegate
+extension RegisterationController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let image = info[.originalImage] as? UIImage
+        plusPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        plusPhotoButton.layer.borderColor = UIColor.white.cgColor
+        plusPhotoButton.layer.borderWidth = 3.0
+        plusPhotoButton.layer.cornerRadius = 200 / 2
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RegisterationController : AuthenticationControllerProtocol {
+    
+    
+    func checkFormStatus() {
+              if viewModel.fromIsValid {
+                  signUpButton.isEnabled = true
+                  signUpButton.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+              } else {
+                  signUpButton.isEnabled = false
+                  signUpButton.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+                  
+              }
+              
+          }
+    
+    
 }

@@ -8,10 +8,19 @@
 
 import UIKit
 
+
+protocol AuthenticationControllerProtocol {
+    func checkFormStatus()
+}
+
 class LoginController: UIViewController {
     
     
+    
+    
     //MARK: - Properties
+    
+    private var viewModel = LoginViewModel()
     
     private let iconImage: UIImageView = {
         let iv = UIImageView()
@@ -38,7 +47,8 @@ class LoginController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.setHeight(height: 50)
-     
+        button.isEnabled = false
+        button.addTarget(self, action:#selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -74,11 +84,14 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+
         
         
     }
     
     //MARK: - Helpers
+    
+
     
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
@@ -109,6 +122,8 @@ class LoginController: UIViewController {
         dontHaveAccountButton.anchor(left: view.leftAnchor , bottom:view.safeAreaLayoutGuide.bottomAnchor,
                                      right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         
     }
     
@@ -119,8 +134,42 @@ class LoginController: UIViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else {
+            viewModel.password = sender.text
+        }
+        
+        checkFormStatus()
+        
+    }
+    
+    @objc func handleLogin() {
+        
+        print(123)
+    }
+    
     //gradation 넣기
     
     
    
+}
+
+extension LoginController : AuthenticationControllerProtocol {
+    
+    
+    func checkFormStatus() {
+        if viewModel.fromIsValid {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+            
+        }
+        
+    }
+    
+    
 }
