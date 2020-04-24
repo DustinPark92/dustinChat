@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73E97492AFC7FE42E1385128 /* Pods_dustinChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECEDB409DCA9E5B1C2CD6B3 /* Pods_dustinChat.framework */; };
 		DA24E97C245285E100E802A4 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24E97B245285E100E802A4 /* InputContainerView.swift */; };
 		DA24E97E24528A0A00E802A4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24E97D24528A0A00E802A4 /* CustomTextField.swift */; };
 		DA4CDC6F24519ADD00EF83A6 /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */; };
@@ -15,6 +16,7 @@
 		DA4CDC762451A4BC00EF83A6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDC752451A4BC00EF83A6 /* Extension.swift */; };
 		DA56C8342452E6410075C9C0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA56C8332452E6410075C9C0 /* LoginViewModel.swift */; };
 		DA56C8362452EE900075C9C0 /* RegisterationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA56C8352452EE900075C9C0 /* RegisterationViewModel.swift */; };
+		DA56C8382452FCF80075C9C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA56C8372452FCF80075C9C0 /* GoogleService-Info.plist */; };
 		DAA2604624519A0F00F621A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604524519A0F00F621A0 /* AppDelegate.swift */; };
 		DAA2604824519A0F00F621A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604724519A0F00F621A0 /* SceneDelegate.swift */; };
 		DAA2604A24519A0F00F621A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604924519A0F00F621A0 /* ViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551DF5C2C5C4D1A6FA490668 /* Pods-dustinChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dustinChat.debug.xcconfig"; path = "Target Support Files/Pods-dustinChat/Pods-dustinChat.debug.xcconfig"; sourceTree = "<group>"; };
+		BECEDB409DCA9E5B1C2CD6B3 /* Pods_dustinChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dustinChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24E97B245285E100E802A4 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		DA24E97D24528A0A00E802A4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
@@ -33,6 +37,7 @@
 		DA4CDC752451A4BC00EF83A6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		DA56C8332452E6410075C9C0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DA56C8352452EE900075C9C0 /* RegisterationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationViewModel.swift; sourceTree = "<group>"; };
+		DA56C8372452FCF80075C9C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DAA2604224519A0F00F621A0 /* dustinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dustinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA2604524519A0F00F621A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAA2604724519A0F00F621A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +47,7 @@
 		DAA2605124519A1000F621A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAA2605424519A1000F621A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAA2605624519A1000F621A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F880C87B600260B14E2851EA /* Pods-dustinChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dustinChat.release.xcconfig"; path = "Target Support Files/Pods-dustinChat/Pods-dustinChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,12 +55,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E97492AFC7FE42E1385128 /* Pods_dustinChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D44AC91B14AFE6D4595FFEBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BECEDB409DCA9E5B1C2CD6B3 /* Pods_dustinChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DA4CDC6624519A2000EF83A6 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +133,8 @@
 			children = (
 				DAA2604424519A0F00F621A0 /* dustinChat */,
 				DAA2604324519A0F00F621A0 /* Products */,
+				E3793C041047BC42F553C29A /* Pods */,
+				D44AC91B14AFE6D4595FFEBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,10 +161,21 @@
 				DAA2604B24519A0F00F621A0 /* Main.storyboard */,
 				DAA2605124519A1000F621A0 /* Assets.xcassets */,
 				DAA2605324519A1000F621A0 /* LaunchScreen.storyboard */,
+				DA56C8372452FCF80075C9C0 /* GoogleService-Info.plist */,
 				DAA2605624519A1000F621A0 /* Info.plist */,
 				DAA2604E24519A0F00F621A0 /* dustinChat.xcdatamodeld */,
 			);
 			path = dustinChat;
+			sourceTree = "<group>";
+		};
+		E3793C041047BC42F553C29A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				551DF5C2C5C4D1A6FA490668 /* Pods-dustinChat.debug.xcconfig */,
+				F880C87B600260B14E2851EA /* Pods-dustinChat.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAA2605924519A1000F621A0 /* Build configuration list for PBXNativeTarget "dustinChat" */;
 			buildPhases = (
+				A1416CB2E0EA4761DF1AE2F0 /* [CP] Check Pods Manifest.lock */,
 				DAA2603E24519A0F00F621A0 /* Sources */,
 				DAA2603F24519A0F00F621A0 /* Frameworks */,
 				DAA2604024519A0F00F621A0 /* Resources */,
+				27F378B4AAC42633341E1E50 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,12 +239,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAA2605524519A1000F621A0 /* LaunchScreen.storyboard in Resources */,
+				DA56C8382452FCF80075C9C0 /* GoogleService-Info.plist in Resources */,
 				DAA2605224519A1000F621A0 /* Assets.xcassets in Resources */,
 				DAA2604D24519A0F00F621A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27F378B4AAC42633341E1E50 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dustinChat/Pods-dustinChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dustinChat/Pods-dustinChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dustinChat/Pods-dustinChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1416CB2E0EA4761DF1AE2F0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dustinChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DAA2603E24519A0F00F621A0 /* Sources */ = {
@@ -374,6 +447,7 @@
 		};
 		DAA2605A24519A1000F621A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 551DF5C2C5C4D1A6FA490668 /* Pods-dustinChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -392,6 +466,7 @@
 		};
 		DAA2605B24519A1000F621A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F880C87B600260B14E2851EA /* Pods-dustinChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
