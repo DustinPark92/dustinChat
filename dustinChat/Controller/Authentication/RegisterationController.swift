@@ -76,6 +76,7 @@ class RegisterationController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setHeight(height: 50)
         button.isEnabled = false
+        
         button.addTarget(self, action:#selector(handleSignUp), for: .touchUpInside)
         
         return button
@@ -119,37 +120,21 @@ class RegisterationController: UIViewController {
         guard let userName = userNameTextField.text?.lowercased() else {return}
         guard let profileImage = profileImage else {return}
         
-        //#1 cloud storage - compression
-        guard let imageData = profileImage.jpegData(compressionQuality: 0.5) else {return}
+        showLoader(true, withText: "Signin Up")
         
-        let filename = NSUUID().uuidString
-        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
-        ref.putData(imageData, metadata: nil) { (meta, error) in
+        let credentials = RegisterationCredentials(email: email, password: password, userName: userName, fullName: fullName, profileImage: profileImage)
+        
+        AuthService.shared.createUser(credentials: credentials) { (error) in
             if let error = error {
                 print("\(error.localizedDescription)")
+                self.showLoader(false)
                 return
-            }
-            ref.downloadURL { (url, error) in
-                guard let profileImageUrl = url?.absoluteString else { return }
                 
-                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                    if let error = error {
-                        print("\(error.localizedDescription)")
-                        return
-                    }
-                    guard let uid = result?.user.uid else { return }
-                    
-            let data = ["email":email,"fullname":fullName
-                ,"profileImageUrl":imageData
-                ,"uid":uid
-                    ,"username":userName] as [String: Any]
-                    // user collection
-                    Firestore.firestore().collection("users").document(uid).setData(data) { erro in
-                    print("Create User")
-                    }
-                }
             }
+            self.showLoader(false)
+            self.dismiss(animated: true, completion: nil)
         }
+
         
         
     }
@@ -175,6 +160,19 @@ class RegisterationController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func keyboardWillShow() {
+        if view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 88
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+     }
+     
+    
     
     //MARK: - Helpers
     
@@ -189,10 +187,12 @@ class RegisterationController: UIViewController {
         
         
         let stack = UIStackView(arrangedSubviews: [emailContainerView,
+                                                   
+                                                   passwordContainerView,
                                                    fullNameContainerView,
                                                    userNameContainerView,
                                                    
-                                                   passwordContainerView,
+                                    
                                                    signUpButton])
         
         view.addSubview(stack)
@@ -219,6 +219,10 @@ class RegisterationController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         userNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     

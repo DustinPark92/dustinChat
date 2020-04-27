@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 
 private let resueIdentifier = "ConversationCell"
@@ -17,14 +21,23 @@ class ConversationsController: UIViewController {
     
     private let tableView = UITableView()
     
+    private let newMessageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "plus"), for: .normal )
+        button.backgroundColor = .systemBlue
+        button.tintColor = .white
+        button.imageView?.setDimensions(height: 24, width: 24)
+        button.addTarget(self, action: #selector(showNewMessage), for: .touchUpInside)
+        return button
+    }()
     
-    
-    
+
     //MARK: - LifeCycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        authenticateUser()
   
         
     }
@@ -32,7 +45,37 @@ class ConversationsController: UIViewController {
     //MARK:- Selectors
     
     @objc func showProfile() {
-        print(123)
+        logout()
+    }
+    
+    @objc func showNewMessage() {
+        let controller = NewMessageController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
+    
+    
+    //MARK: - API
+    
+    func authenticateUser() {
+        if Auth.auth().currentUser?.uid == nil {
+            presentLoginScreen()
+        } else {
+            print("\(Auth.auth().currentUser?.uid)")
+        }
+    }
+    
+    //MARK: - Helpers
+    
+    func presentLoginScreen() {
+        DispatchQueue.main.async {
+            let controller = LoginController()
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+self.present(nav, animated: true, completion: nil)
+        }
     }
     
     func configureUI() {
@@ -40,10 +83,16 @@ class ConversationsController: UIViewController {
         view.backgroundColor = .white
 
         
-        configureNavigationBar()
+        configureNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
         configureTableView()
         let image = UIImage(systemName: "person.circle.fill")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showProfile))
+        
+        view.addSubview(newMessageButton)
+        newMessageButton.setDimensions(height: 56, width: 56)
+        newMessageButton.layer.cornerRadius = 56 / 2
+        newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor , right : view.rightAnchor,
+                                paddingBottom: 16, paddingRight: 24)
     }
     
     func configureTableView() {
@@ -61,23 +110,14 @@ class ConversationsController: UIViewController {
         tableView.frame = view.frame
     }
     
-    func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = .systemPurple
-        
-        
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        navigationItem.title = "Messages"
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
-        
-        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            presentLoginScreen()
+        } catch {
+            print("Error Sign out")
+        }
         
     }
 

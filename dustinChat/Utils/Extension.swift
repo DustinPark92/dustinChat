@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 
 extension UIView {
@@ -86,6 +87,8 @@ extension UIView {
 
 extension UIViewController {
     
+    static let hud = JGProgressHUD(style: .dark)
+    
     func configureGradientLayer() {
            let gradient = CAGradientLayer()
            gradient.colors = [UIColor.systemBlue.cgColor, UIColor.systemTeal.cgColor]
@@ -94,4 +97,41 @@ extension UIViewController {
            gradient.frame = view.frame
            
        }
+    
+    func showLoader(_ show: Bool, withText text: String? = "Loading") {
+        //JGProgressHuD
+        view.endEditing(true)
+
+        UIViewController.hud.textLabel.text = text
+        
+        
+        if show {
+            UIViewController.hud.show(in: view)
+        } else {
+            UIViewController.hud.dismiss()
+        }
+    }
+    
+    func configureNavigationBar(withTitle title: String, prefersLargeTitles: Bool) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
+        
+        navigationItem.title = title
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+        
+    }
+
+    
+    
 }

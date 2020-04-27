@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,11 @@
 		DA56C8342452E6410075C9C0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA56C8332452E6410075C9C0 /* LoginViewModel.swift */; };
 		DA56C8362452EE900075C9C0 /* RegisterationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA56C8352452EE900075C9C0 /* RegisterationViewModel.swift */; };
 		DA56C8382452FCF80075C9C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA56C8372452FCF80075C9C0 /* GoogleService-Info.plist */; };
+		DA6B8E2E2453CD0100913BCA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B8E2D2453CD0100913BCA /* AuthService.swift */; };
+		DA8357A62456B6D800F58C05 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8357A52456B6D800F58C05 /* NewMessageController.swift */; };
+		DA8357A82456BA4000F58C05 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8357A72456BA4000F58C05 /* UserCell.swift */; };
+		DA8357AA2456BE0100F58C05 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8357A92456BE0100F58C05 /* User.swift */; };
+		DA8357AC2456BE6700F58C05 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8357AB2456BE6700F58C05 /* Service.swift */; };
 		DAA2604624519A0F00F621A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604524519A0F00F621A0 /* AppDelegate.swift */; };
 		DAA2604824519A0F00F621A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604724519A0F00F621A0 /* SceneDelegate.swift */; };
 		DAA2604A24519A0F00F621A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2604924519A0F00F621A0 /* ViewController.swift */; };
@@ -38,6 +43,11 @@
 		DA56C8332452E6410075C9C0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DA56C8352452EE900075C9C0 /* RegisterationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterationViewModel.swift; sourceTree = "<group>"; };
 		DA56C8372452FCF80075C9C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DA6B8E2D2453CD0100913BCA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		DA8357A52456B6D800F58C05 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		DA8357A72456BA4000F58C05 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		DA8357A92456BE0100F58C05 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DA8357AB2456BE6700F58C05 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		DAA2604224519A0F00F621A0 /* dustinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dustinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA2604524519A0F00F621A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAA2604724519A0F00F621A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +83,8 @@
 		DA4CDC6624519A2000EF83A6 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				DA6B8E2D2453CD0100913BCA /* AuthService.swift */,
+				DA8357AB2456BE6700F58C05 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -82,6 +94,7 @@
 			children = (
 				DA4CDC702451A25400EF83A6 /* Authentication */,
 				DA4CDC6E24519ADD00EF83A6 /* ConversationController.swift */,
+				DA8357A52456B6D800F58C05 /* NewMessageController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -100,6 +113,7 @@
 			children = (
 				DA24E97B245285E100E802A4 /* InputContainerView.swift */,
 				DA24E97D24528A0A00E802A4 /* CustomTextField.swift */,
+				DA8357A72456BA4000F58C05 /* UserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,6 +121,7 @@
 		DA4CDC6C24519A3D00EF83A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DA8357A92456BE0100F58C05 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,7 +189,6 @@
 				551DF5C2C5C4D1A6FA490668 /* Pods-dustinChat.debug.xcconfig */,
 				F880C87B600260B14E2851EA /* Pods-dustinChat.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -298,9 +312,14 @@
 				DA4CDC722451A26500EF83A6 /* LoginController.swift in Sources */,
 				DA56C8342452E6410075C9C0 /* LoginViewModel.swift in Sources */,
 				DA56C8362452EE900075C9C0 /* RegisterationViewModel.swift in Sources */,
+				DA8357AA2456BE0100F58C05 /* User.swift in Sources */,
+				DA8357A62456B6D800F58C05 /* NewMessageController.swift in Sources */,
 				DA4CDC6F24519ADD00EF83A6 /* ConversationController.swift in Sources */,
 				DAA2604624519A0F00F621A0 /* AppDelegate.swift in Sources */,
+				DA6B8E2E2453CD0100913BCA /* AuthService.swift in Sources */,
+				DA8357A82456BA4000F58C05 /* UserCell.swift in Sources */,
 				DA24E97E24528A0A00E802A4 /* CustomTextField.swift in Sources */,
+				DA8357AC2456BE6700F58C05 /* Service.swift in Sources */,
 				DA24E97C245285E100E802A4 /* InputContainerView.swift in Sources */,
 				DA4CDC742451A29700EF83A6 /* RegisterationController.swift in Sources */,
 				DAA2605024519A0F00F621A0 /* dustinChat.xcdatamodeld in Sources */,

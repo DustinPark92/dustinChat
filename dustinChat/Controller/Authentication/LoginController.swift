@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseAuth
+import JGProgressHUD
 
 protocol AuthenticationControllerProtocol {
     func checkFormStatus()
@@ -31,13 +33,13 @@ class LoginController: UIViewController {
     
     private lazy var emailContainerView: InputContainerView = {
         return InputContainerView(image: UIImage(named: "ic_mail_outline_white_2x")!, textField: emailTextField)
-
+        
     }()
     
     private lazy var  passwordContainerView: UIView = {
         return InputContainerView(image: UIImage(named: "ic_lock_outline_white_2x")!, textField: passwordTextField)
         
-     }()
+    }()
     
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -53,7 +55,7 @@ class LoginController: UIViewController {
     }()
     
     private let emailTextField: CustomTextField = {
-
+        
         return CustomTextField(placeholder: "Email")
     }()
     
@@ -67,10 +69,10 @@ class LoginController: UIViewController {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account", attributes:
             [.font : UIFont.systemFont(ofSize: 16),
-            .foregroundColor: UIColor.white] )
+             .foregroundColor: UIColor.white] )
         
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [.font: UIFont.boldSystemFont(ofSize: 16),
-                        .foregroundColor:UIColor.white]))
+                                                                                  .foregroundColor:UIColor.white]))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
@@ -84,14 +86,14 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-
+        
         
         
     }
     
     //MARK: - Helpers
     
-
+    
     
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
@@ -123,7 +125,7 @@ class LoginController: UIViewController {
                                      right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
         
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         
     }
     
@@ -146,14 +148,29 @@ class LoginController: UIViewController {
     }
     
     @objc func handleLogin() {
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
         
-        print(123)
+        
+        showLoader(true,withText: "Loggin in")
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("\(error.localizedDescription)")
+                self.showLoader(false)
+                return
+            }
+            self.showLoader(false)
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+
+        
+        
     }
     
-    //gradation 넣기
     
     
-   
 }
 
 extension LoginController : AuthenticationControllerProtocol {
