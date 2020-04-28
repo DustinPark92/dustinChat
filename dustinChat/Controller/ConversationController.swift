@@ -20,6 +20,7 @@ class ConversationsController: UIViewController {
     //MARK: - Properties
     
     private let tableView = UITableView()
+    private var conversations = [Conversation]()
     
     private let newMessageButton: UIButton = {
         let button = UIButton(type: .system)
@@ -38,6 +39,8 @@ class ConversationsController: UIViewController {
         super.viewDidLoad()
         configureUI()
         authenticateUser()
+        fetchConversations()
+        
   
         
     }
@@ -52,12 +55,20 @@ class ConversationsController: UIViewController {
         let controller = NewMessageController()
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
+        controller.delegate = self 
         present(nav, animated: true, completion: nil)
     }
     
     
     
     //MARK: - API
+    
+    func fetchConversations() {
+        Service.fetchConversations { conversations in
+            self.conversations = conversations
+            self.tableView.reloadData()
+        }
+    }
     
     func authenticateUser() {
         if Auth.auth().currentUser?.uid == nil {
@@ -125,13 +136,14 @@ self.present(nav, animated: true, completion: nil)
 
 extension ConversationsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        print(conversations.count)
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: resueIdentifier, for: indexPath)
         
-        cell.textLabel?.text = "Test cell"
+        cell.textLabel?.text = conversations[indexPath.row].message.text
         
         return cell
     }
@@ -147,6 +159,20 @@ extension ConversationsController: UITableViewDelegate {
         print(indexPath.row)
     }
     
+    
+    
+}
+// MARK: - NewMessageControllerDelegate
+
+//#4 Protocol
+extension ConversationsController: NewMessageControllerDelegate {
+    func controller(_ controller: NewMessageController, wantsToStartChatWith user: User) {
+        controller.dismiss(animated: true, completion: nil)
+        
+        let chat = ChatController(user: user)
+        navigationController?.pushViewController(chat, animated: true)
+
+    }
     
     
 }
