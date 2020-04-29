@@ -13,9 +13,17 @@ import JGProgressHUD
 
 protocol AuthenticationControllerProtocol {
     func checkFormStatus()
+    
 }
 
+protocol AuthenticationDelegate: class {
+    func authenticationComplete()
+}
+
+
+
 class LoginController: UIViewController {
+    
     
     
     
@@ -23,6 +31,7 @@ class LoginController: UIViewController {
     //MARK: - Properties
     
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImage: UIImageView = {
         let iv = UIImageView()
@@ -133,6 +142,7 @@ class LoginController: UIViewController {
     
     @objc func handleShowSignUp() {
         let controller = RegisterationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -156,12 +166,12 @@ class LoginController: UIViewController {
         
         AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                print("\(error.localizedDescription)")
                 self.showLoader(false)
+                self.showError(error.localizedDescription)
                 return
             }
             self.showLoader(false)
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
         
 
@@ -174,6 +184,8 @@ class LoginController: UIViewController {
 }
 
 extension LoginController : AuthenticationControllerProtocol {
+ 
+    
     
     
     func checkFormStatus() {
@@ -190,3 +202,5 @@ extension LoginController : AuthenticationControllerProtocol {
     
     
 }
+
+

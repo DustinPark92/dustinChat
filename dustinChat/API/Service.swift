@@ -7,6 +7,9 @@
 //
 
 import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 
 
 //#1 fectch User Data
@@ -14,25 +17,20 @@ struct Service {
     
     static func fetchUser(completion: @escaping([User]) -> Void) {
         
-        var users = [User]()
+        //로그인 한 사람 리스트에서 지우기
         COLLECTION_USERS.getDocuments { (snapshot, error) in
-            snapshot?.documents.forEach({ (document) in
+            
+            guard var users = snapshot?.documents.map({ User(dictionary: $0.data()) }) else { return }
+            if let i = users.firstIndex(where: {$0.uid == Auth.auth().currentUser?.uid }) {
                 
-                
-                let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                
-                print("\(user.username)")
-                print("\(user.fullname)")
-                users.append(user)
-                completion(users)
-                
-                
-         
-            })
+                users.remove(at: i)
+            
+            }
+            
+            completion(users)
+            
         }
-        
-        
+ 
     }
     
     
@@ -57,7 +55,7 @@ struct Service {
                 let dictionary = change.document.data()
                 let message = Message(dictionary: dictionary)
                 
-                self.fetchUser(withUid: message.toId) { user in
+                self.fetchUser(withUid: message.chatPartnerId) { user in
                      let conversation = Conversation(user: user, message: message)
                     conversations.append(conversation)
                     completion(conversations)
@@ -103,9 +101,9 @@ struct Service {
             
             //가장 최근에 채팅 한 사람 위로 올리기 "message" 콜렉션안에 recent-message 생성해서 최근 메세지 저장
             COLLECTION_MESSAGES.document(currentUid).collection("recent-messages").document(user.uid).setData(data)
-            
-            
             COLLECTION_MESSAGES.document(user.uid).collection("recent-messages").document(currentUid).setData(data)
+            
+            
             
         }
     }

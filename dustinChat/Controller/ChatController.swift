@@ -26,7 +26,9 @@ class ChatController: UICollectionViewController {
     //MARK: - API
     
     func fetchMessage() {
+        showLoader(true)
         Service.fetchMessage(forUSer: user) { messages in
+            self.showLoader(false)
             self.messages = messages
             self.collectionView.reloadData()
             //새 메세지 생길때마다 제일 하단으로 내려가게 함.
